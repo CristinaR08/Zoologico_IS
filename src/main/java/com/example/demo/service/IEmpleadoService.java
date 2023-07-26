@@ -6,7 +6,7 @@ import com.example.demo.repository.modelo.Empleado;
 
 public interface IEmpleadoService {
 
-	public void insertar(Empleado cliente);
+	public void insertar(Empleado empleado);
 	public List<Empleado> mostrarListaEmpleados(); 
 	
 }

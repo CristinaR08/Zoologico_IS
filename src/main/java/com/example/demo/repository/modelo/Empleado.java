@@ -20,10 +20,13 @@ public class Empleado {
 	@Column(name = "empl_id")
 	private Integer id;
 	
+	@Column(name = "empl_nombre")
+	private String nombre;
+	
 	//atributos
 	
 	//relacion con contrato
-	@OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "empleado", cascade = CascadeType.PERSIST)
 	private Contrato contrato;
 
 	public Integer getId() {
@@ -40,6 +43,19 @@ public class Empleado {
 
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
+	}
+
+	@Override
+	public String toString() {
+		return "Empleado [id=" + id + ", contrato=" + contrato + "]";
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	
