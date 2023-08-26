@@ -16,6 +16,10 @@ public interface IAnimalService {
 	
 	public BigDecimal dietaAnimal(BigDecimal peso,BigDecimal factorActvidad);
 	
+	public Animal reporteEspecie(String nombreEspecie);
+	
+	public Animal buscarEspecie(String nombreEspecie);
+	
 	
 	
 

@@ -56,4 +56,13 @@ public class AnimalRepositoryImpl implements IAnimalRepository {
 		return myQuery.getResultList();
 	}
 
+	
+	@Override
+	public Animal buscarEspecie(String nombreEspecie) {
+		TypedQuery<Animal> myQuery = this.entityManager.createQuery(
+				"SELECT a FROM Animal a WHERE a.nombreCientifico=:nombreEspecie",Animal.class);
+		myQuery.setParameter("nombreEspecie", nombreEspecie);
+		return myQuery.getSingleResult();
+	}
+
 }

@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.repository.modelo.Proveedor;
 
-import com.example.demo.repository.modelo.dto.Proveedores;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -21,7 +19,7 @@ public class ProveedoresRepositoryImpl implements IProveedorRepository{
 
 	@Override
 	public void insertar(Proveedor proveedor) {
-		this.entityManager.merge(proveedor);
+		this.entityManager.persist(proveedor);
 		
 	}
 
@@ -38,19 +36,13 @@ public class ProveedoresRepositoryImpl implements IProveedorRepository{
 
 	@Override
 	public void eliminarId(Integer id) {
-		Proveedor proveedor = this.entityManager.find(Proveedor.class, id);
-	    if (proveedor != null) {
-	        this.entityManager.remove(proveedor);
-	    } else {
-	        System.out.println("No se encuentra el proveedor con ID: "+id);
-	    }
+		this.entityManager.remove(id);
+		
 	}
 
 	@Override
-	public List<Proveedores> reporteProveedores() {
-		TypedQuery<Proveedores> myQuery = this.entityManager.createQuery(
-				"SELECT NEW com.example.demo.repository.modelo.dto.Proveedores(p.tipoAlimento, p.tipoMedicina, p.tipoImplementos) FROM Proveedor p",
-				Proveedores.class);
+	public List<Proveedor> reporteProveedor() {
+		TypedQuery<Proveedor> myQuery = this.entityManager.createQuery("SELECT p FROM Proveedor p",Proveedor.class);
 		return myQuery.getResultList();
 
 	}

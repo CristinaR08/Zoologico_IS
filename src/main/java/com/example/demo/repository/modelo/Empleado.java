@@ -31,7 +31,7 @@ public class Empleado {
 
 	@Column(name = "empl_nombre")
 	private String nombre;
-	
+
 	@Column(name = "empl_apellido")
 	private String apellido;
 
@@ -41,11 +41,22 @@ public class Empleado {
 	@Column(name = "empl_fecha_nacimiento")
 	private LocalDate fechaNacimiento;
 
-	@Column(name = "empl_email")
-	private String email;
+	@Column(name = "empl_correo")
+	private String correo;
 
 	@Column(name = "empl_telefono")
 	private String telefono;
+
+	@Column(name = "empl_contrasenia")
+	private String contrasenia;
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "empl_cargo_tipo")
@@ -53,21 +64,17 @@ public class Empleado {
 
 	@OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
 	private List<ContratoEmpleados> contrato_empleados;
-	
+
 	@OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL)
 	private Horarios horarios;
 
-	@ManyToOne
-	@JoinColumn(name = "empleadoEncargado")
-	private Inventario inventario;
-	
 	@OneToMany(mappedBy = "empleado", cascade = CascadeType.DETACH)
 	private List<Asignacion> asignaciones;
 
 	@Override
 	public String toString() {
 		return "Empleado [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", telefono=" + telefono
+				+ ", fechaNacimiento=" + fechaNacimiento + ", email=" + correo + ", telefono=" + telefono
 				+ ", tipoCargo=" + tipoCargo + "]";
 	}
 
@@ -96,11 +103,11 @@ public class Empleado {
 	}
 
 	public String getEmail() {
-		return email;
+		return correo;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.correo = email;
 	}
 
 	public String getTelefono() {
@@ -135,14 +142,6 @@ public class Empleado {
 		this.horarios = horarios;
 	}
 
-	public Inventario getInventario() {
-		return inventario;
-	}
-
-	public void setInventario(Inventario inventario) {
-		this.inventario = inventario;
-	}
-
 	public String getApellido() {
 		return apellido;
 	}
@@ -167,5 +166,4 @@ public class Empleado {
 		this.asignaciones = asignaciones;
 	}
 
-	
 }

@@ -1,8 +1,6 @@
 package com.example.demo.repository.modelo;
 
-import java.math.BigDecimal;
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -30,7 +27,7 @@ public class Animal {
 	@Column(name = "anim_nombreComun")
 	private String nombreComun;
 	@Column(name = "anim_peso")
-	private BigDecimal peso;//big decimal
+	private Double peso;
 	@Column(name = "anim_dieta")
 	private String dieta;
 	@Column(name = "anim_edad")
@@ -39,6 +36,8 @@ public class Animal {
 	private String estado;
 	@Column(name = "anim_codigoRegistro")
 	private String codigoRegistro;
+	@Column(name = "anim_comportamiento")
+	private String comportamineto;
 
 	@OneToMany(mappedBy = "animal",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<HistorialMedico> historialMedico;
@@ -67,11 +66,11 @@ public class Animal {
 		this.nombreComun = nombreComun;
 	}
 
-	public BigDecimal getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 
-	public void setPeso(BigDecimal peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
@@ -82,8 +81,6 @@ public class Animal {
 	public void setDieta(String dieta) {
 		this.dieta = dieta;
 	}
-
-
 
 	public String getEdad() {
 		return edad;
@@ -117,16 +114,19 @@ public class Animal {
 		this.historialMedico = historialMedico;
 	}
 
+	public String getComportamineto() {
+		return comportamineto;
+	}
+
+	public void setComportamineto(String comportamineto) {
+		this.comportamineto = comportamineto;
+	}
+
 	@Override
 	public String toString() {
 		return "Animal [id=" + id + ", nombreCientifico=" + nombreCientifico + ", nombreComun=" + nombreComun
 				+ ", peso=" + peso + ", dieta=" + dieta + ", edad=" + edad + ", estado=" + estado + ", codigoRegistro="
-				+ codigoRegistro + ", historialMedico=" + historialMedico + "]";
+				+ codigoRegistro + ", comportamineto=" + comportamineto + "]";
 	}
 
-	
-
-
-	
-	
 }

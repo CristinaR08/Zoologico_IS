@@ -27,7 +27,7 @@ public class Asignacion {
 	@Column(name = "asig_estado")
 	private Boolean estado;
 
-	@ManyToOne(cascade =  CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "asig_id_empleado")
 	private Empleado empleado;
 

@@ -50,18 +50,19 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 	@Override
 	public Boolean autenticar(String correo, String pass) {
-		Cliente empleado = this.clienteRepository.buscarCorreo(correo);
-		System.out.println("Encontro el usuario");
-		if (empleado == null) {
+		System.out.println("Verificando...");
+		Cliente cliente = this.clienteRepository.buscarCorreo(correo);
+		if (cliente == null) {
+			System.out.println("El correo no existe, intente de  nuevo.");
+			System.out.println("Si no tiene cuenta registrese :) ");
 			return false;
 		} else {
-			System.out.println(empleado.getContrasenia());
-			System.out.println(pass);
-			if (empleado.getContrasenia().equals(pass)) {
-				System.out.println("si es la contraseña");
+			if (cliente.getContrasenia().equals(pass)) {
+				System.out.println("Bienvenido/a: "+ cliente.getNombre()+" "+cliente.getApellido());
+				System.out.println("Iniciando sesion...");
 				return true;
 			} else {
-				System.out.println("no es la contraseña");
+				System.out.println("Contraseña incorrecta. Intente de nuevo");
 				return false;
 			}
 		}

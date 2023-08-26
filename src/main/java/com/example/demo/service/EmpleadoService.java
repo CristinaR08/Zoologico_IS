@@ -10,5 +10,5 @@ public interface EmpleadoService {
 	public void actualizar(Empleado empleado);
 	public void actualizarContrato(Empleado empleado, ContratoEmpleados contratoEmpleados);
 	public Empleado buscar(Integer id);
-
+	public Boolean autenticar(String correo, String contrasenia);
 }

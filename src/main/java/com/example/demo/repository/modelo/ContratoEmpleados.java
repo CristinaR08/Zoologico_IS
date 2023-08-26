@@ -43,7 +43,7 @@ public class ContratoEmpleados {
 	
 	//many to one empleados
 	@ManyToOne
-	@JoinColumn(name="contr_id_empleado")//
+	@JoinColumn(name="cont_id_empleado")//
 	private Empleado empleado;
 
 	@Override

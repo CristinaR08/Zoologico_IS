@@ -18,7 +18,7 @@ public class InventarioRepositoryImpl implements InventarioRepository{
 	@Override
 	public void insertar(Inventario inventario) {
 		this.entityManager.persist(inventario);
-		
+
 	}
 
 	@Override

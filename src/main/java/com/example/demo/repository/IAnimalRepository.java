@@ -11,5 +11,7 @@ public interface IAnimalRepository {
 	public Animal buscarId(Integer id);
 	public void eliminarId(Integer id);
 	public List<Animal> verListaAnimales();
+	
+	public Animal buscarEspecie(String nombreEspecie);
 
 }

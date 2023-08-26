@@ -41,10 +41,27 @@ public class EmpleadoRepositoryImpl implements EmpleadoRepository {
 	}
 
 	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Empleado seleccinarCedula(Integer cedula) {
-		TypedQuery<Empleado> myQuery = this.entityManager.createQuery("SELECT e FROM Empleado e WHERE e.cedula = :datoCedula", Empleado.class);
+		TypedQuery<Empleado> myQuery = this.entityManager
+				.createQuery("SELECT e FROM Empleado e WHERE e.cedula = :datoCedula", Empleado.class);
 		myQuery.setParameter("datoCedula", cedula);
 		return myQuery.getSingleResult();
+	}
+
+	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
+	public Empleado buscarCorreo(String correo) {
+		TypedQuery<Empleado> query = this.entityManager
+				.createQuery("SELECT e FROM Empleado e WHERE e.correo = :datoCorreo", Empleado.class);
+		query.setParameter("datoCorreo", correo);
+		try {
+			return query.getSingleResult();
+		} catch (Exception e) {
+			System.err.println("No se encontro el correo");
+			return null;
+		}
+
 	}
 
 }

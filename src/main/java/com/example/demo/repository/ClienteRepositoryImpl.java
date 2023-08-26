@@ -58,21 +58,17 @@ public class ClienteRepositoryImpl implements IClienteRepository{
 		this.entityManager.persist(cliente);
 		
 	}
-
-	// BUSCAR USER
+	// buscar correo
 		@Override
 		public Cliente buscarCorreo(String correo) {
 			TypedQuery<Cliente> query = this.entityManager
-					.createQuery("SELECT c FROM Cliente c WHERE c.correo = :datoCorreoo", Cliente.class);
+					.createQuery("SELECT c FROM Cliente c WHERE c.correo = :datoCorreo", Cliente.class);
 			query.setParameter("datoCorreo", correo);
-
 			try {
 				return query.getSingleResult();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				System.err.println("No se encontro el correo");
 				return null;
-
 			}
 		}
 }

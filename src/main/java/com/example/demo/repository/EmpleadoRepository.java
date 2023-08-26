@@ -8,6 +8,7 @@ public interface EmpleadoRepository {
 	public void actualizar(Empleado empleado);
 	public Empleado seleccinarCedula(Integer cedula);
 	public Empleado seleccionar(Integer id);
+	public Empleado buscarCorreo(String correo);
 	
 
 }

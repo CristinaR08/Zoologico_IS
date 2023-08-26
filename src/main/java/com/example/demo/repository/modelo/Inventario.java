@@ -22,13 +22,15 @@ public class Inventario {
 	@Column(name = "inve_id")
 	private Integer id;
 	
-	@OneToMany(mappedBy = "inventario", cascade = CascadeType.ALL)
-    private List<Detalle> detalles;
-
+	@Column(name="inve_id_encargado")
+	private Integer idEncargado;
+	
+	@OneToMany(mappedBy = "inventario",cascade = CascadeType.ALL)
+	private List<Producto> invProductos;
 	
 	@Override
 	public String toString() {
-		return "Inventario [id=" + id + "]";
+		return "Inventario [id=" + id + ", idEncargado=" + idEncargado + "]";
 	}
 
 	public Integer getId() {
@@ -40,13 +42,21 @@ public class Inventario {
 	}
 
 
-	public List<Detalle> getDetalles() {
-		return detalles;
+	public Integer getIdEncargado() {
+		return idEncargado;
 	}
 
-	public void setDetalles(List<Detalle> detalles) {
-		this.detalles = detalles;
+	public void setIdEncargado(Integer idEncargado) {
+		this.idEncargado = idEncargado;
+	}
+
+	public List<Producto> getInvProductos() {
+		return invProductos;
+	}
+
+	public void setInvProductos(List<Producto> invProductos) {
+		this.invProductos = invProductos;
 	}
 	
-
+	
 }

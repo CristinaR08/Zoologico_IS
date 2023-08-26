@@ -1,11 +1,14 @@
 package com.example.demo.repository.modelo;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -29,18 +32,16 @@ public class Proveedor {
 	@Column(name = "prov_correo_electronico")
 	private String correoElectronico;
 
-	@Column(name = "prov_tipo_alimento")
-	private String tipoAlimento;
-
-	@Column(name = "prov_tipo_medicina")
-	private String tipoMedicina;
-
-	@Column(name = "prov_tipo_implementos")
-	private String tipoImplementos;
+	@Column(name = "prov_tiempo_entrega")
+	private int tiempoEntrega;
+	
+	//relacion con producto
+	@OneToMany(mappedBy = "proveedor",cascade = CascadeType.ALL)
+	private List<Producto> listaProductos;
 
 	// relacion con contrato
 	@OneToOne(mappedBy = "proveedor", cascade = CascadeType.ALL)
-	private ContratoProveedores proveedores;
+	private ContratoProveedores contrato_proveedores;
 
 	// set y get
 	public Integer getId() {
@@ -75,48 +76,34 @@ public class Proveedor {
 		this.correoElectronico = correoElectronico;
 	}
 
-	public String getTipoAlimento() {
-		return tipoAlimento;
+	public int getTiempoEntrega() {
+		return tiempoEntrega;
 	}
 
-	public void setTipoAlimento(String tipoAlimento) {
-		this.tipoAlimento = tipoAlimento;
+	public void setTiempoEntrega(int tiempoEntrega) {
+		this.tiempoEntrega = tiempoEntrega;
 	}
 
-	public String getTipoMedicina() {
-		return tipoMedicina;
+	public List<Producto> getListaProductos() {
+		return listaProductos;
 	}
 
-	public void setTipoMedicina(String tipoMedicina) {
-		this.tipoMedicina = tipoMedicina;
+	public void setListaProductos(List<Producto> listaProductos) {
+		this.listaProductos = listaProductos;
 	}
 
-	public String getTipoImplementos() {
-		return tipoImplementos;
+	public ContratoProveedores getContrato() {
+		return contrato_proveedores;
 	}
 
-	public void setTipoImplementos(String tipoImplementos) {
-		this.tipoImplementos = tipoImplementos;
-	}
-	
-
-	public ContratoProveedores getProveedores() {
-		return proveedores;
-	}
-
-	public void setProveedores(ContratoProveedores proveedores) {
-		this.proveedores = proveedores;
+	public void setContrato(ContratoProveedores contrato) {
+		this.contrato_proveedores = contrato;
 	}
 
 	@Override
 	public String toString() {
 		return "Proveedor [id=" + id + ", nombreEmpresa=" + nombreEmpresa + ", telefono=" + telefono
-				+ ", correoElectronico=" + correoElectronico + ", tipoAlimento=" + tipoAlimento + ", tipoMedicina="
-				+ tipoMedicina + ", tipoImplementos=" + tipoImplementos + ", contrato_proveedores="
-				+"]";
+				+ ", correoElectronico=" + correoElectronico + ", tiempoEntrega=" + tiempoEntrega + "]";
 	}
-
-
 	
-
 }

@@ -18,45 +18,46 @@ public class AnimalServiceImpl implements IAnimalService {
 
 	@Override
 	public void guadar(Animal animal) {
-		// TODO Auto-generated method stub
 		this.animalRepository.insertar(animal);
 	}
 
 	@Override
 	public void actualizar(Animal animal) {
-		// TODO Auto-generated method stub
 		this.animalRepository.actualizar(animal);
 	}
 
 	@Override
 	public Animal buscarId(Integer id) {
-		// TODO Auto-generated method stub
 		return this.animalRepository.buscarId(id);
 	}
 
 	@Override
 	public void eliminarId(Integer id) {
-		// TODO Auto-generated method stub
 		this.animalRepository.eliminarId(id);
 	}
 
 	@Override
 	public List<Animal> reporteAnimales() {
-		// TODO Auto-generated method stub
 		return this.animalRepository.verListaAnimales();
 	}
 
 	@Override
 	public BigDecimal dietaAnimal(BigDecimal peso, BigDecimal factorActvidad) {
-		// Requerimiento Calórico Diario (en  kilocalorías) = 
-				//Peso corporal (en kilogramos) ^ 0.75 * Factor de Actividad(1.5-2.0)
-		
-		BigDecimal exponente=factorActvidad.multiply(new BigDecimal(0.75));
-	
+		/*BigDecimal exponente=factorActvidad.multiply(new BigDecimal(0.75));
 		BigDecimal caloricoDiario= peso.pow(exponente.intValueExact(),MathContext.DECIMAL128);
+		return caloricoDiario;*/
+		return null;
 		
-		return caloricoDiario;
-		
+	}
+
+	@Override
+	public Animal reporteEspecie(String nombreEspecie) {
+		return this.animalRepository.buscarEspecie(nombreEspecie);
+	}
+
+	@Override
+	public Animal buscarEspecie(String nombreEspecie) {
+		return this.animalRepository.buscarEspecie(nombreEspecie);
 	}
 
 	

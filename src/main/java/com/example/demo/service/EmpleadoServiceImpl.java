@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,13 +10,14 @@ import com.example.demo.repository.IContratoERepository;
 import com.example.demo.repository.modelo.ContratoEmpleados;
 import com.example.demo.repository.modelo.Empleado;
 
-import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 
 @Service
 public class EmpleadoServiceImpl implements EmpleadoService {
-
+	
+	private static final Logger LOG = LoggerFactory.getLogger(EmpleadoServiceImpl.class);
+	
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
 	
@@ -48,5 +51,24 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		this.contratoERepository.actualizar(empleado, contratoEmpleados);
 		
 	}
+	
+	@Override
+    public Boolean autenticar(String correo, String contrasenia) {
+		LOG.info("Verificando...");
+		Empleado empleado = this.empleadoRepository.buscarCorreo(correo);
+        if(empleado == null) {
+        	LOG.error("El correo ingresado no existe, verifique bien los datos ingresados");
+        	return false;
+        } else {
+           if(empleado.getContrasenia().equals(contrasenia)) {
+        	   LOG.info("Bienvenido/a: "+ empleado.getNombre()+" "+empleado.getApellido());
+        	   LOG.info("Iniciando sesion...");
+        	   return true;
+           }else {
+        	   LOG.error("Contraseña incorrecta. Intente de nuevo");
+        	   return false;
+           }
+        }
+    }
 
 }

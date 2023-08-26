@@ -33,11 +33,9 @@ public class ContratoProveedores {
 	@Column(name = "cont_fechaFinalizacion")
 	private LocalDate fechaFinalizacion;
 	
-	
-	
 	//one to one proveedores
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="contr_id_proveedor")//
+	@JoinColumn(name="cont_id_proveedor")//
 	private Proveedor proveedor;
 
 	@Override

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.IProveedorRepository;
 import com.example.demo.repository.modelo.Proveedor;
-import com.example.demo.repository.modelo.dto.Proveedores;
-
 @Service
 public class ProveedorServiceImpl implements IProveedorService{
 
@@ -36,9 +34,9 @@ public class ProveedorServiceImpl implements IProveedorService{
 	}
 
 	@Override
-	public List<Proveedores> reporteProveedores() {
+	public List<Proveedor> reporteProveedor() {
 		// TODO Auto-generated method stub
-		return this.proveedorRepository.reporteProveedores();
+		return this.proveedorRepository.reporteProveedor();
 	}
 
 	
